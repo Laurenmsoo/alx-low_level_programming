@@ -2,11 +2,11 @@
 /**
  * print_rev - prints string in reverse
  * @stri: string to be printed
- * return: 0
+ * return: 0 success
  */
 void print_rev(char *stri)
 {
-	int longi = 0;
+	int length = 0;
 	int i;
 
 	while (*stri != '\0')
