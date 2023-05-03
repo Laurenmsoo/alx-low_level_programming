@@ -3,7 +3,8 @@
 /**
  * _atoi - converts a string to an integer
  * @s: string to be converted
- * Return: 0 sccess
+ *
+ * Return: coverted int
  */
 int _atoi(char *s)
 {
@@ -16,20 +17,20 @@ int _atoi(char *s)
 	y = 0;
 	numb = 0;
 
-	while (s[length = '\0')
-		length
+	while (s[length] != '\0')
+		length++;
 
-	while (i < length y == 0)
+	while (i < length && y == 0)
 	{
 		if (s[i] == '-')
 			++x;
 
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			numb  = s[i] - '0';
-			if (d % 2)
-				numb  = -numb;
-			n = n * 10 + dumb;
+			numb = s[i] - '0';
+			if (x % 2)
+				numb = -numb;
+			n = n * 10 + numb;
 			y = 1;
 			if (s[i + 1] < '0' || s[i + 1] > '9')
 				break;
@@ -43,4 +44,3 @@ int _atoi(char *s)
 
 	return (n);
 }
-
