@@ -1,55 +1,79 @@
 #include "main.h"
-#include <stdio.h>
+
 /**
-* infinite_add - adds two numbers
-* @n1: first number
-* @n2: second number
-* @r: buffer that the function will use to store the result.
-* @size_r: buffer size:
-* Return: 0 success
+* rev_array - reverse array
+* @s: integer
+* Return: 0
+*/
+
+void rev_array(char *s)
+{
+int i = 0;
+int j = 0;
+char t;
+
+while (*(s + i) != '\0')
+{
+i++;
+}
+i--;
+
+for (j = 0; j < i; j++, i--)
+{
+t = *(s + j);
+*(s + j) = *(s + i);
+*(s + i) = t;
+}
+}
+
+/**
+* infinite_add - adds 2 numbers
+* @n1: number one
+* @n2: number 2
+* @r:  buffer that the function will use to store the result
+* @size_r: buffer size
+* Return: pointer to results
 */
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-int x1 = 0, x2 = 0, rvs, b, y1, y2, sum = 0;
 
-while (*(n1 + x1) != '\0')
-x1++;
-while (*(n2 + x2) != '\0')
-x2++;
-if (x1 >= x2)
-b = x1;
-else
-b = x2;
-if (size_r <= b + 1)
+int b = 0, i = 0, j = 0, numbs = 0;
+int numb1 = 0, numb2 = 0, sum = 0;
+
+while (*(n1 + i) != '\0')
+i++;
+while (*(n2 + j) != '\0')
+j++;
+i--;
+j--;
+if (j >= size_r || i >= size_r)
 return (0);
-r[b + 1] = '\0';
-x1--, x2--, size_r--;
-y1 = *(n1 + x1) -48;
-y2 = *(n2 + x2) -48;
-while (b >= 0)
+while (j >= 0 || i >= 0 || b == 1)
 {
-rvs = y1 + y2 + sum;
-if (rvs >= 10)
-sum = rvs / 10;
+if (i < 0)
+numb1 = 0;
 else
-sum = 0;
-if (rvs > 0)
-*(r + b) = (rvs % 10) + 48;
+numb1 = *(n1 + i) -'0';
+if (j < 0)
+numb2 = 0;
 else
-*(r + b) = '0';
-if (x1 > 0)
-x1--, y1 = *(n1 + x1) -48;
+numb2 = *(n2 + j) -'0';
+sum = numb1 + numb2 + b;
+if (sum >= 10)
+b = 1;
 else
-y1 = 0;
-if (x2 > 0)
-x2--, y2 = *(n2 + x2) -48;
-else
-y2 = 0;
-b--, size_r--;
+b = 0;
+if (numbs >= (size_r - 1))
+return (0);
+*(r + numbs) = (sum % 10) + '0';
+numbs++;
+j--;
+i--;
 }
-if (*(r) == '0')
-return (r + 1);
-else
+if (numbs == size_r)
+return (0);
+*(r + numbs) = '\0';
+rev_array(r);
 return (r);
 }
