@@ -1,6 +1,6 @@
 #include "main.h"
 
-int actual_prime(int n, int i);
+int calc_prime(int n, int i);
 
 /**
  * is_prime_number - checs if number is prime or not
