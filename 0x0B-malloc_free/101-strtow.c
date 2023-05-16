@@ -44,6 +44,7 @@ if (gr == NULL)
 return (NULL);
 for (i = 0; i <= slen; i++)
 {
+if (str[i] == ' ' || str[i] == '\0')
 {
 if (count)
 {
@@ -53,10 +54,11 @@ if (t == NULL)
 return (NULL);
 while (strt < end)
 *t++ = str[strt++];
-*tmp = '\0';
+*t = '\0';
 gr[k] = t - count;
 k++;
 count = 0;
+}
 }
 else if (count++ == 0)
 strt = i;
