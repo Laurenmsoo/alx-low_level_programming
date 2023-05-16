@@ -4,7 +4,7 @@
 /**
 * _strdup -  copies string to new memory space location
 * @str: char input
-* Return: pointer t the new memory,
+* Return: pointer to the new memory,
 *return NULL if it fails
 */
 char *_strdup(char *str)
@@ -20,7 +20,7 @@ i++;
 ch = malloc(sizeof(char) * (i + 1));
 if (ch == NULL)
 return (NULL);
-for (x = 0; str[r]; x++)
+for (x = 0; str[x]; x++)
 ch[x] = str[x];
 return (ch);
 }
