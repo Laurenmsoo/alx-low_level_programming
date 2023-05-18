@@ -1,36 +1,37 @@
 #include <stdlib.h>
 #include "main.h"
 /**
-* *string_nconcat - concatenates two strings
-* @s1: input string
-* @s2: input string
-* @n: number of bytes from s2 to be concatenated
-* Return: pointer t the new memory location
-*/
-char *string_nconcat(char *s1, char *s2, unsigned int n)
+ * *_memfill - fills memory with a constant byte b
+ * @s: memory block to be filled
+ * @b: input character
+ * @n: number of times b will be copied
+ * Return: pointer to memory filled
+ */
+char *_memfil(char *s, char b, unsigned int n)
 {
-char *str;
-unsigned int i = 0, j = 0, slen1 = 0, slen2 = 0;
+unsigned int i;
 
-while (s1 && s1[slen1])
-slen1++;
-while (s2 && s2[slen2])
-slen2++;
-if (n < slen2)
-str = malloc(sizeof(char) * (slen1 + n + 1));
-else
-str = malloc(sizeof(char) * (slen1 + slen2 + 1));
-if (!str)
-return (NULL);
-while (i < slen1)
+for (i = 0; i < n; i++)
 {
-str[i] = s1[i];
-i++;
+s[i] = b;
 }
-while (n < slen2 && i < (slen1 + n))
-str[i++] = s2[j++];
-while (n >= slen2 && i < (slen1 + slen2))
-str[i++] = s2[j++];
-str[i] = '\0';
-return (str);
+return (s);
+}
+/**
+* *_calloc - allocates memory for an array
+* @nmemb: number of elements in the array
+* @size: element size
+* Return: pointer to the new memory location
+*/
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+char *ptr;
+
+if (nmemb == 0 || size == 0)
+return (NULL);
+ptr = malloc(size * nmemb);
+if (ptr == NULL)
+return (NULL);
+_memset(ptr, 0, nmemb * size);
+return (ptr);
 }
