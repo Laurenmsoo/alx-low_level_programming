@@ -7,7 +7,7 @@
  * @n: number of times b will be copied
  * Return: pointer to memory filled
  */
-char *_memfil(char *s, char b, unsigned int n)
+char *_memfill(char *s, char b, unsigned int n)
 {
 unsigned int i;
 
@@ -32,6 +32,6 @@ return (NULL);
 ptr = malloc(size * nmemb);
 if (ptr == NULL)
 return (NULL);
-_memset(ptr, 0, nmemb * size);
+_memfill(ptr, 0, nmemb * size);
 return (ptr);
 }
