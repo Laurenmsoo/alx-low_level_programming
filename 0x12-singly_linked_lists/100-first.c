@@ -1,7 +1,7 @@
 #include <stdio.h>
 void print(void) __attribute__ ((constructor));
 /**
-* first - prints a string before the main
+* print - prints a string before the main
 * function is executed
 */
 void print(void)
