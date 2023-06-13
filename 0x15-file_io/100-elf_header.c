@@ -247,7 +247,7 @@ void wr_entry(unsigned long int e_entry, unsigned char *e_ident)
 
 /**
  * close_elf - Closes an ELF file.
- * @elf: file description 
+ * @elf: file description
  *
  * Description: If the file cannot be closed - exit code 98.
  */
