@@ -7,33 +7,33 @@
 #include <sys/types.h>
 
 
-void test_elf(unsigned char *e_ident);
-void wr_magic(unsigned char *e_ident);
-void wr_class(unsigned char *e_ident);
-void wr_data(unsigned char *e_ident);
-void wr_version(unsigned char *e_ident);
-void wr_abi(unsigned char *e_ident);
-void wr_osabi(unsigned char *e_ident);
-void wr_type(unsigned int e_type, unsigned char *e_ident);
-void wr_entry(unsigned long int e_entry, unsigned char *e_ident);
+void check_elf(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_data(unsigned char *e_ident);
+void print_version(unsigned char *e_ident);
+void print_abi(unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
+void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
 /**
- * test_elf -checks if file contains elf numbers.
+ * check_elf -checks if file contains elf numbers.
  * @e_ident: pointer to array of elf numbers
  *
- * Description:if not an elf - exit code 98.
+ * Description:if the file is not an an elf file - exit code 98.
  */
-void test_elf(unsigned char *e_ident)
+void check_elf(unsigned char *e_ident)
 {
-	int i;
+	int index;
 
-	for (i = 0; i < 4; i++)
+	for (index = 0; index < 4; index++)
 	{
-		if (e_ident[i] != 127 &&
-		    e_ident[i] != 'E' &&
-		    e_ident[i] != 'L' &&
-		    e_ident[i] != 'F')
+		if (e_ident[index] != 127 &&
+		    e_ident[index] != 'E' &&
+		    e_ident[index] != 'L' &&
+		    e_ident[index] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
@@ -42,22 +42,22 @@ void test_elf(unsigned char *e_ident)
 }
 
 /**
- * wr_magic - displays magic numbers in an elf header.
+ * print_magic - prints magic numbers in an elf header.
  * @e_ident: pointer to array of magic elf numbers
  *
  * Description: Magic numbers have white spaces separating them.
  */
-void wr_magic(unsigned char *e_ident)
+void print_magic(unsigned char *e_ident)
 {
-	int i;
+	int index;
 
 	printf(" Magic: ");
 
-	for (i = 0; i < EI_NIDENT; i++)
+	for (index = 0; index < EI_NIDENT; index++)
 	{
-		printf("%02x", e_ident[i]);
+		printf("%02x", e_ident[index]);
 
-		if (i == EI_NIDENT - 1)
+		if (index == EI_NIDENT - 1)
 			printf("\n");
 		else
 			printf(" ");
@@ -65,10 +65,10 @@ void wr_magic(unsigned char *e_ident)
 }
 
 /**
- * wr_class - displays elf number class
+ * print_class - displays elf number class
  * @e_ident: pointer to array of elf class header
  */
-void wr_class(unsigned char *e_ident)
+void print_class(unsigned char *e_ident)
 {
 	printf(" Class: ");
 
@@ -89,10 +89,10 @@ void wr_class(unsigned char *e_ident)
 }
 
 /**
- * wr_data -displays content of the elf header
+ * print_data -displays content of the elf header
  * @e_ident: pointer to array of elf class header.
  */
-void wr_data(unsigned char *e_ident)
+void print_data(unsigned char *e_ident)
 {
 	printf(" Data: ");
 
@@ -113,11 +113,11 @@ void wr_data(unsigned char *e_ident)
 }
 
 /**
- *  wr_version -displays elf header version.
+ *  print_version -displays elf header version.
  *   @e_ident: points to array with elf header version.
  *    
 */
-void wr_version(unsigned char *e_ident)
+void print_version(unsigned char *e_ident)
 {
 	 printf(" Version: %d",
 			  e_ident[EI_VERSION]);
@@ -134,10 +134,10 @@ void wr_version(unsigned char *e_ident)
 }
 
 /**
- * wr_osabi - shows the OSABI of the elf header.
+ * print_osabi - shows the OSABI of the elf header.
  * @e_ident: contains elf version
  */
-void wr_osabi(unsigned char *e_ident)
+void print_osabi(unsigned char *e_ident)
 {
 	printf(" OS/ABI: ");
 
@@ -179,21 +179,21 @@ void wr_osabi(unsigned char *e_ident)
 }
 
 /**
- * wr_abi - checks the abi version.
+ * print_abi - checks the abi version.
  * @e_ident: points to elf ABI version.
  */
-void wr_abi(unsigned char *e_ident)
+void print_abi(unsigned char *e_ident)
 {
 	printf(" ABI Version: %d\n",
 		e_ident[EI_ABIVERSION]);
 }
 
 /**
- * wr_type - checks the elf type
+ * print_type - checks the elf type
  * @e_type: the ELF type.
  * @e_ident: points to elf class
 */
-void wr_type(unsigned int e_type, unsigned char *e_ident)
+void print_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
@@ -223,11 +223,11 @@ void wr_type(unsigned int e_type, unsigned char *e_ident)
 }
 
 /**
- * wr_entry - shows the elf header entry point
+ * print_entry - shows the elf header entry point
  * @e_entry: pointer to elf header
  * @e_ident: points to elf class
  */
-void wr_entry(unsigned long int e_entry, unsigned char *e_ident)
+void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
 	printf(" Entry point address: ");
 
@@ -298,19 +298,18 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		exit(98);
 	}
 
-	test_elf(header->e_ident);
+	check_elf(header->e_ident);
 	printf("ELF Header:\n");
-	wr_magic(header->e_ident);
-	wr_class(header->e_ident);
-	wr_data(header->e_ident);
-	wr_version(header->e_ident);
-	wr_osabi(header->e_ident);
-	wr_abi(header->e_ident);
-	wr_type(header->e_type, header->e_ident);
-	wr_entry(header->e_entry, header->e_ident);
+	print_magic(header->e_ident);
+	print_class(header->e_ident);
+	print_data(header->e_ident);
+	print_version(header->e_ident);
+	print_osabi(header->e_ident);
+	print_abi(header->e_ident);
+	print_type(header->e_type, header->e_ident);
+	print_entry(header->e_entry, header->e_ident);
 
 	free(header);
 	close_elf(op);
 	return (0);
 }
-
