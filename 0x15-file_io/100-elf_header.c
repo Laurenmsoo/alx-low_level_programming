@@ -115,7 +115,7 @@ void print_data(unsigned char *e_ident)
 /**
  *  print_version -displays elf header version.
  *   @e_ident: points to array with elf header version.
- *    
+ *
 */
 void print_version(unsigned char *e_ident)
 {
@@ -247,7 +247,7 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 
 /**
  * close_elf - Closes an ELF file.
- * @elf: file description 
+ * @elf: file description
  *
  * Description: If the file cannot be closed - exit code 98.
  */
