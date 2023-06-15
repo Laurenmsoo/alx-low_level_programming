@@ -60,7 +60,7 @@ if (failed_close == -1)
 failed_close = close(file_to);
 if (failed_close == -1)
 {
-	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
 	exit(100);
 }
 return (0);
