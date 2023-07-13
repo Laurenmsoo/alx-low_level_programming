@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 	int len1, len2, len, i, c, numb1, numb2, *result, a = 0;
 
 	s1 = argv[1], s2 = argv[2];
-	if (argc != 3 || !is_numb(s1) || !is_numb(s2))
+	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
 		errors();
 	len1 = _strlen(s1);
 	len2 = _strlen(s2);
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
 		{
 			numb2 = s2[len2] - '0';
-			c += result[len1 + len2 + 1] + (numb1 * digit2);
+			c += result[len1 + len2 + 1] + (numb1 * numb2);
 			result[len1 + len2 + 1] = c % 10;
 			c /= 10;
 		}
