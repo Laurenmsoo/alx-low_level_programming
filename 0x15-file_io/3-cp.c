@@ -12,13 +12,13 @@ void canopen_file(int file_from, int file_to, char *argv[])
 {
 if (file_from == -1)
 {
-dprintf(STDERR_FILENO, "Error:Can't read from file %s\n",
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n",
 			argv[1]);
 exit(98);
 }
 if (file_to == -1)
 {
-dprintf(STDERR_FILENO, "Error:Can't write to file %s\n", argv[2]);
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 exit(99);
 }
 }
@@ -56,7 +56,7 @@ canopen_file(0, -1, argv);
 cant_close = close(file_from);
 if (cant_close == -1)
 {
-dprintf(STDERR_FILENO, "Error:Can't close fd %d\n", file_from);
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 exit(100);
 }
 cant_close = close(file_to);
