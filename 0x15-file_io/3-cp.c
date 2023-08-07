@@ -37,7 +37,7 @@ ssize_t data, _write;
 char _buffer[1024];
 if (argc != 3)
 {
-dprintf(STDERR_FILENO, "%s\n", "usage: cp file_from file_to");
+dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
 exit(97);
 }
 file_from = open(argv[1], O_RDONLY);
