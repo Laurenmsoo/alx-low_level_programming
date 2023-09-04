@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 /**
- * canopen_file - checkes whether the file can open
+ * canopen_file - checks whether the file can open
  * @file_from: file to copy the content from
  * @file_to: file to copy the content to
  * @argv:arguments vector
@@ -39,6 +39,7 @@ exit(97);
 }
 file_from = open(argv[1], O_RDONLY);
 file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
+canopen_file(file_from, file_to, argv);
 data = 1024;
 while (data == 1024)
 {
