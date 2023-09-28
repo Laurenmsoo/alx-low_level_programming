@@ -5,7 +5,7 @@
  * @n: pointer to the numb to change to 0
  * @index: index of the bit ti change
  *
- * Return: 1 for success, 
+ * Return: 1 for success,
  * return: -1 for failure
  */
 int clear_bit(unsigned long int *n, unsigned int index)
