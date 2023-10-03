@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include "main.h"
 /**
- * canopen- checks if the files can open
+ * canopen_file - checks if the files can open
  * @file_from: file to copy from
  * @file_to: file to copy to
  * @argv: arguments vector
  */
-void canopen(int file_from, int file_to, char *argv[])
+void canopen_file(int file_from, int file_to, char *argv[])
 {
 if (file_from == -1)
 {
@@ -40,16 +40,16 @@ int main(int argc, char *argv[])
 	}
 	file_from = open(argv[1], O_RDONLY);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	canopen(file_from, file_to, argv);
+	canopen_file(file_from, file_to, argv);
 	data = 1024;
 	while (data == 1024)
 	{
 		data = read(file_from, buf, 1024);
 		if (data == -1)
-			canopen(-1, 0, argv);
+			canopen_file(-1, 0, argv);
 		wrt = write(file_to, buf, data);
 		if (wrt == -1)
-			canopen(0, -1, argv);
+			canopen_file(0, -1, argv);
 	}
 	cant_close = close(file_from);
 	if (cant_close == -1)
