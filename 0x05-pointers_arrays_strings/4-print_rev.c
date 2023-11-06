@@ -7,11 +7,12 @@ void print_rev(char *s)
 {
 	int slen = 0;
 	int i;
+	char *end = s;
 
-	while (*s != '\0')
+	while (*end != '\0')
 	{
 		slen++;
-		s++;
+		end++;
 	}
 	for (i = slen - 1; i >= 0; i--)
 	{
