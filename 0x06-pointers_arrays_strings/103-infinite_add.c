@@ -1,3 +1,31 @@
+#include "main.h"
+
+/**
+* rev_array - reverse array
+* @s: integer
+* Return: 0
+*/
+
+void rev_array(char *s)
+{
+int i = 0;
+int j = 0;
+char t;
+
+while (*(s + i) != '\0')
+{
+i++;
+}
+i--;
+
+for (j = 0; j < i; j++, i--)
+{
+t = *(s + j);
+*(s + j) = *(s + i);
+*(s + i) = t;
+}
+}
+
 /**
 * infinite_add - adds 2 numbers
 * @n1: number one
@@ -48,6 +76,4 @@ return (0);
 *(r + numbs) = '\0';
 rev_array(r);
 return (r);
-}
-return (0);
 }
